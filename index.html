@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrono Mapper - World War Events</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Chrono Mapper</h1>
+        <p>Interactive World War Events Timeline</p>
+    </header>
+    
+    <div class="controls">
+        <div class="filter-section">
+            <label for="category-filter">Filter by Category:</label>
+            <select id="category-filter">
+                <option value="all">All Events</option>
+                <option value="Assasination">Assassination</option>
+                <option value="Invasion">Invasion</option>
+                <option value="Attack">Attack</option>
+            </select>
+        </div>
+        
+        <div class="timeline-section">
+            <label for="year-range">Year Range:</label>
+            <input type="range" id="year-range" min="1914" max="1945" value="1945">
+            <span id="year-display">1945</span>
+        </div>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div class="legend">
+        <h3>Event Categories</h3>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #FF0000;"></span>
+            <span>Assassination</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #0000FF;"></span>
+            <span>Invasion</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #FFA500;"></span>
+            <span>Attack</span>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
