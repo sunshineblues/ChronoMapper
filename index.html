@@ -17,37 +17,64 @@
         <div class="filter-section">
             <label for="category-filter">Filter by Category:</label>
             <select id="category-filter">
-                <option value="all">All Events</option>
-                <option value="Assasination">Assassination</option>
+                <option value="Assassination">Assassination</option>
                 <option value="Invasion">Invasion</option>
                 <option value="Attack">Attack</option>
+                <option value="Battle">Battle</option>
+                <option value="Political">Political</option>
+                <option value="Armistice">Armistice</option>
+                <option value="Evacuation">Evacuation</option>
             </select>
         </div>
         
-        <div class="timeline-section">
-            <label for="year-range">Year Range:</label>
-            <input type="range" id="year-range" min="1914" max="1945" value="1945">
-            <span id="year-display">1945</span>
-        </div>
-    </div>
+       <div class="timeline-section">
+    <label for="year-range">Year Range:</label>
+    <input type="range" id="year-range" min="1914" max="1945" value="1945">
+    <span id="year-display">1945</span>
+    <button id="show-all">Show All Events</button>
+</div>
     
     <div id="map"></div>
+    <div id="event-count">Showing 25 of 25 events</div>
     
     <div class="legend">
-        <h3>Event Categories</h3>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #FF0000;"></span>
-            <span>Assassination</span>
-        </div>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #0000FF;"></span>
-            <span>Invasion</span>
-        </div>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #FFA500;"></span>
-            <span>Attack</span>
-        </div>
+    <h3>Event Categories</h3>
+
+    <div class="legend-item">
+        <span class="legend-color" style="background-color: #FF0000;"></span>
+        <span>Assassination</span>
     </div>
+
+    <div class="legend-item">
+        <span class="legend-color" style="background-color: #0000FF;"></span>
+        <span>Invasion</span>
+    </div>
+
+    <div class="legend-item">
+        <span class="legend-color" style="background-color: #FFA500;"></span>
+        <span>Attack</span>
+    </div>
+
+    <div class="legend-item">
+        <span class="legend-color" style="background-color: #008000;"></span>
+        <span>Battle</span>
+    </div>
+
+    <div class="legend-item">
+        <span class="legend-color" style="background-color: #800080;"></span>
+        <span>Political</span>
+    </div>
+
+    <div class="legend-item">
+        <span class="legend-color" style="background-color: #00A6A6;"></span>
+        <span>Armistice</span>
+    </div>
+
+    <div class="legend-item">
+        <span class="legend-color" style="background-color: #8B4513;"></span>
+        <span>Evacuation</span>
+    </div>
+</div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>

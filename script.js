@@ -17,11 +17,13 @@ function initMap() {
 // Category color mapping
 function getCategoryColor(category) {
     const categoryColors = {
-        'Assasination': '#FF0000', // Red
-        'Invasion': '#0000FF',     // Blue
-        'Attack': '#FFA500',       // Orange
-        'Treaty': '#008000',       // Green
-        'Protest': '#800080'       // Purple
+        'Assassination': '#FF0000', // Red
+        'Invasion': '#0000FF',      // Blue
+        'Attack': '#FFA500',        // Orange
+        'Battle': '#008000',        // Green
+        'Political': '#800080',     // Purple
+        'Armistice': '#00A6A6',     // Teal
+        'Evacuation': '#8B4513'     // Brown
     };
     return categoryColors[category?.trim()] || '#808080'; // Default: gray
 }
@@ -62,7 +64,8 @@ function createPopupContent(event) {
 }
 
 // Add markers to map
-function addMarkersToMap(events) {
+function addMarkersToMap(events) {document.getElementById('event-count').textContent =
+    `Showing ${events.length} of ${allEvents.length} events`;
     // Clear existing markers
     markers.forEach(marker => map.removeLayer(marker));
     markers = [];
@@ -87,12 +90,17 @@ function addMarkersToMap(events) {
 
 // Filter events by category
 function filterByCategory(category) {
-    let filteredEvents = allEvents;
-    
-    if (category !== 'all') {
-        filteredEvents = allEvents.filter(event => event.Category === category);
-    }
-    
+    const maxYear = parseInt(document.getElementById('year-range').value);
+
+    let filteredEvents = allEvents.filter(event => {
+        const eventYear = new Date(event.Date).getFullYear();
+
+        const matchesYear = eventYear <= maxYear;
+        const matchesCategory = category === 'all' || event.Category === category;
+
+        return matchesYear && matchesCategory;
+    });
+
     addMarkersToMap(filteredEvents);
 }
 
@@ -114,7 +122,7 @@ function filterByYear(maxYear) {
 
 // Load and parse CSV data
 function loadData() {
-    Papa.parse("data.csv", {
+    Papa.parse("world_war_events.csv", {
         download: true,
         header: true,
         complete: function(results) {
@@ -134,10 +142,16 @@ function loadData() {
                 document.getElementById('year-display').textContent = year;
                 filterByYear(parseInt(year));
             });
+            document.getElementById('show-all').addEventListener('click', function() {
+                document.getElementById('year-range').value = 1945;
+                document.getElementById('year-display').textContent = '1945';
+                document.getElementById('category-filter').value = 'all';
+                addMarkersToMap(allEvents);
+            });
         },
         error: function(error) {
             console.error("Error loading CSV:", error);
-            alert("Error loading event data. Please make sure data.csv is in the same directory.");
+            alert("Error loading event data. Please make sure world_war_events.csv is in the same directory.");
         }
     });
 }
